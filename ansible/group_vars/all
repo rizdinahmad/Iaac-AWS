@@ -1,0 +1,34 @@
+# WordPress database settings //input bila deploy menggunakan ansible
+wp_db_name: 
+wp_db_user: 
+wp_db_pass: 
+wp_db_host: 
+
+# config pesbuk //input bila deploy menggunakan ansible
+pb_db_name: 
+pb_db_user: 
+pb_db_password: 
+pb_db_hostname: 
+
+# docker login
+docker_name: 
+docker_pass: 
+
+# aws key
+access_key: 
+secret_key: 
+
+# rds
+database1: 
+database2: 
+rdsuser: 
+rdspass: 
+
+# export kops
+bucket_name: 
+cluster_names: 
+state_store: 
+
+#type instance
+node_size: 
+master_size: 

@@ -1,0 +1,4 @@
+- name: install mysql-client
+  apt:
+    name: mysql-client-core-5.7
+    state: present

@@ -1,0 +1,12 @@
+- name: Download Script File helm
+  shell: curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3
+  args:
+     executable: /bin/bash
+
+- name: Set Permision
+  command: chmod 700 get_helm.sh
+
+- name: Install Helm
+  shell: ./get_helm.sh
+  args:
+     executable: /bin/bash

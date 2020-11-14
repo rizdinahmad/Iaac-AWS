@@ -1,0 +1,15 @@
+- name: install docker
+  apt:
+     name: docker.io
+     state: present
+
+- name: docker login
+  shell: docker login -u {{ docker_name }} -p {{ docker_pass }} 
+  args:
+     executable: /bin/bash
+
+- name: add user
+  command: usermod -aG docker jenkins
+  
+- name: add user
+  command: usermod -aG docker ubuntu

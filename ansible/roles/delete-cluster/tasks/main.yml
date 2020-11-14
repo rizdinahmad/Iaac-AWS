@@ -1,0 +1,4 @@
+- name: Delete Cluser
+  shell: kops delete cluster --name={{ cluster_names }} --state={{ state_store }} --yes
+  args:
+     executable: /bin/bash

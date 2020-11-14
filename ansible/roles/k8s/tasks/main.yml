@@ -1,0 +1,32 @@
+#- name: export to .bashrc
+#  shell: echo "export bucket_name=clusters.projectcilsy.rizdin.online" >> ~/.bashrc
+#   args:
+#       executable: /bin/bash     
+
+#- name: export to .bashrc
+#  shell: echo "cluster_names=projectcilsy.rizdin.online" >> ~/.bashrc
+#  args:
+#      executable: /bin/bash
+      
+#- name: export to .bashrc
+#  shell: echo "state_store=s3://clusters.bigproject.rizdin.online" >> ~/.bashrc
+#  args:
+#      executable: /bin/bash
+
+
+- name		: Create Cluster
+  command	: kops create cluster --zones=ap-northeast-2a --node-count=3 --master-count=1 --node-size={{ node_size }} --master-size={{ master_size }} --name={{ cluster_names }} --state={{state_store}} --ssh-public-key=~/.ssh/id_rsa.pub 
+
+- name		: Create High Availability Cluster --> kops
+  command	: kops create cluster --node-count 3 --zones ap-northeast-2b,ap-northeast-2c,ap-northeast-2d --master-zones ap-northeast-2b,ap-northeast-2c,ap-northeast-2d --node-size={{ node_size }} --master-size={{ master_size }} --name={{ cluster_names }} --state={{ state_store }} --ssh-public-key=~/.ssh/id_rsa.pub
+
+- name		: Update Cluster
+  command	: kops update cluster --name {{ cluster_names }} --state {{ state_store }} --yes
+
+- name		: Clusters Creating Progress 10m 
+  command	: sleep 10m
+
+- name		: Validate Cluster
+  shell		: kops validate cluster --name {{ cluster_names }} --state={{ state_store }}
+  args:
+      executable: /bin/bash

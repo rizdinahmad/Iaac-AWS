@@ -1,0 +1,9 @@
+- name: Pre-requered Jenkins
+  hosts: jenkins
+  remote_user: root
+  become: yes
+  become_method: sudo
+  roles:
+    - awscli
+    - kubectl
+    - docker

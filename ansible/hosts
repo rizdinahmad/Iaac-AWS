@@ -1,0 +1,5 @@
+[jenkins]
+<ip-server-jenkins>
+
+[bastion-cluster]
+3.35.149.147

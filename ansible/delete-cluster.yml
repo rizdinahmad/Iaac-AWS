@@ -1,0 +1,7 @@
+- name: Create Clusters
+  hosts: bastion-cluster
+  remote_user: root
+  become: yes
+  become_method: sudo
+  roles:
+    - delete-cluster

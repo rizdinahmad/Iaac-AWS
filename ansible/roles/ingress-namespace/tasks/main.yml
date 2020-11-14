@@ -1,0 +1,19 @@
+- name: apply ingress
+  shell:  kubectl apply -f https://raw.githubusercontent.com/kubernetes/kops/master/addons/ingress-nginx/v1.6.0.yaml
+  args:
+      executable: /bin/bash
+
+- name:  create namespace staging 
+  shell: kubectl create namespace staging
+  args:
+      executable: /bin/bash
+      
+- name:  create namespace production 
+  shell: kubectl create namespace production
+  args:
+      executable: /bin/bash
+      
+- name:  create namespace monitoring 
+  shell: kubectl create namespace monitoring
+  args:
+      executable: /bin/bash
