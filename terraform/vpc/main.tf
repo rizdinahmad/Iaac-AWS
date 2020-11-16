@@ -12,27 +12,27 @@ provider "aws" {
 }
 
 #############################################################
-resource "aws_vpc" "bigproject" { 
+resource "aws_vpc" "my_project" { 
   cidr_block			= "10.0.0.0/16"
   instance_tenancy  		= "default"
   enable_dns_hostnames		= "true"
   enable_dns_support		= "true"
    
   tags = {
-      Name = "vpc-bigproject"
+      Name = "vpc-my_project"
   }
 } 
 
 resource "aws_route_table" "route_table" {
-  vpc_id 			= aws_vpc.bigproject.id
+  vpc_id 			= aws_vpc.my_project.id
   
   tags = {
-      Name = "rtb-bigproject"
+      Name = "rtb-my_project"
   }
 }
 
 resource "aws_subnet" "subnet_a" {
-  vpc_id      			= aws_vpc.bigproject.id
+  vpc_id      			= aws_vpc.my_project.id
   cidr_block			= "10.0.10.0/24"
   availability_zone		= "ap-northeast-2a"
   map_public_ip_on_launch 	= "true"
@@ -43,7 +43,7 @@ resource "aws_subnet" "subnet_a" {
 }
 
 resource "aws_subnet" "subnet_b" {
-  vpc_id      			= aws_vpc.bigproject.id
+  vpc_id      			= aws_vpc.my_project.id
   cidr_block			= "10.0.11.0/24"
   availability_zone		= "ap-northeast-2b"
   map_public_ip_on_launch 	= "true"
@@ -54,7 +54,7 @@ resource "aws_subnet" "subnet_b" {
 }
 
 resource "aws_subnet" "subnet_c" {
-  vpc_id      			= aws_vpc.bigproject.id
+  vpc_id      			= aws_vpc.my_project.id
   cidr_block			= "10.0.12.0/24"
   availability_zone		= "ap-northeast-2c"
   map_public_ip_on_launch 	= "true"
@@ -64,7 +64,7 @@ resource "aws_subnet" "subnet_c" {
   }
 }
 resource "aws_subnet" "subnet_d" {
-  vpc_id      			= aws_vpc.bigproject.id
+  vpc_id      			= aws_vpc.my_project.id
   cidr_block			= "10.0.13.0/24"
   availability_zone		= "ap-northeast-2d"
   map_public_ip_on_launch 	= "true"
@@ -75,16 +75,16 @@ resource "aws_subnet" "subnet_d" {
 }
 
 resource "aws_internet_gateway" "gateway" {
-  vpc_id 			= aws_vpc.bigproject.id
+  vpc_id 			= aws_vpc.my_project.id
   
   tags = {
-      Name = "igw-bigproject"
+      Name = "igw-project"
   }
 }
 
 
 resource "aws_main_route_table_association" "vpc_association" {
-  vpc_id         = aws_vpc.bigproject.id
+  vpc_id         = aws_vpc.my_project.id
   route_table_id = aws_route_table.route_table.id
 }
 
@@ -107,10 +107,10 @@ resource "aws_route_table_association" "subnet_association_d" {
    subnet_id	  = aws_subnet.subnet_d.id
    route_table_id = aws_route_table.route_table.id
 }
-resource "aws_security_group" "sg_jenkins" {
-  name        = "bigproject"
+resource "aws_security_group" "sg_costume" {
+  name        = "my_project"
   description = "Terraform Created"
-  vpc_id      = aws_vpc.bigproject.id
+  vpc_id      = aws_vpc.my_project.id
 
   ingress {
     description = ""
@@ -162,6 +162,6 @@ resource "aws_security_group" "sg_jenkins" {
   }
 
   tags = {
-    Name = "sg-Jenkins"
+    Name = "sg-costume"
   }
 }
