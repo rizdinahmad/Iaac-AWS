@@ -1,4 +1,4 @@
-# Iaac-AWS
+# Iac - provider AWS
 Dokumentasi pembuatan infrastruktur dan provisionig server di aws
 Materi    : Sekolah  Devops Cilsy
 App       : sosial-media, landingpage, dan wordpress
